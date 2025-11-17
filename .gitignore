@@ -1,0 +1,5 @@
+# User-specific environment configuration
+.env
+
+# Docker volumes and build artifacts
+AffinityPluginLoader/
