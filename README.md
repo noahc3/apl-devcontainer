@@ -61,13 +61,23 @@ You can create wrapper scripts to use container tools as if they were installed 
 ```bash
 # Example: Create a wrapper for dotnet
 echo '#!/usr/bin/env bash
-/path/to/apl-dev-container/exec.sh dotnet "$@"' > ~/bin/dotnet-wine
+/path/to/apl-devcontainer/exec.sh dotnet "$@"' > ~/bin/dotnet-wine
 chmod +x ~/bin/dotnet-wine
 
 # Now you can use it from anywhere:
 cd ~/repos/AffinityPluginLoader
 dotnet-wine build
 dotnet-wine run
+```
+
+You could also just link the exec.sh script to a bin directory:
+
+```bash
+# Link exec.sh to ~/bin/apl
+ln -s /path/to/apl-devcontainer/exec.sh ~/bin/apldev
+
+# Now you can run any command inside the container easily:
+apldev dotnet build -c Release
 ```
 
 This approach lets you seamlessly use the containerized build tools on Affinity Plugin Loader or any other repository in your home directory.
