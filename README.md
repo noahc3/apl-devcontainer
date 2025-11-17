@@ -2,6 +2,9 @@
 
 This Docker setup creates a persistent development environment for Affinity Plugin Loader with MinGW, .NET SDK and necessary Windows SDK components (from Wine) pre-configured.
 
+>[!WARN]
+> Once built, the image contains copyrighted files and should only be used locally. Do not distribute the built container image, only distribute the source Dockerfile.
+
 ## Quick Start
 
 ### Initial Setup
@@ -156,3 +159,7 @@ If you need to run commands as root inside the container, use `sudo`:
 - Use `docker-compose logs -f apl-dev` to view container logs
 - The image contains copyrighted files and should only be used locally. Do not distribute the built container image.
 - Run `./setup-env.sh` before first build to set up proper user ID mapping
+
+## Licensing
+
+The APL Development container configuration files are licensed under the MIT License. You can find a copy of the license [in the LICENSE file](LICENSE).
