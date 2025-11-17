@@ -18,14 +18,12 @@ services:
     volumes:
       # Mount your entire home directory for access to all repositories
       - ${HOME}:/home/host
-      # Mount current directory to /host for backwards compatibility
+      # Mount current directory to /host for easy access
       - .:/host
       # Persist gin configuration and prefixes
       - gin-data:/gin
-      # Persist workspace
-      - workspace-data:/workspace
     # Set working directory
-    working_dir: /workspace
+    working_dir: /home/ubuntu
     # Environment variables (customize as needed)
     environment:
       - DISPLAY=${DISPLAY:-:0}
@@ -37,6 +35,4 @@ services:
 
 volumes:
   gin-data:
-    driver: local
-  workspace-data:
     driver: local

@@ -52,11 +52,6 @@ RUN mkdir -p /tmp/wine-setup && cd /tmp/wine-setup \
     && cp libmscoree.a /usr/x86_64-w64-mingw32/lib/ \
     && cd / && rm -rf /tmp/wine-setup
 
-# Clone AffinityPluginLoader repository
-RUN git clone https://github.com/noahc3/AffinityPluginLoader.git /workspace/AffinityPluginLoader \
-    && cd /workspace/AffinityPluginLoader \
-    && git switch sln-modernization
-
 # Configure the ubuntu user with matching UID/GID
 # Ubuntu 24.04 comes with an 'ubuntu' user (UID 1000, GID 1000)
 # We'll modify it to match the host user's UID/GID
@@ -66,13 +61,13 @@ RUN usermod -u ${USER_UID} ubuntu 2>/dev/null || true \
     && chown -R ${USER_UID}:${USER_GID} /home/ubuntu
 
 # Set ownership of key directories to the ubuntu user
-RUN chown -R ${USER_UID}:${USER_GID} /gin /workspace
+RUN chown -R ${USER_UID}:${USER_GID} /gin
 
 # Switch to non-root user
 USER ubuntu
 
-# Set working directory
-WORKDIR /workspace
+# Set working directory to ubuntu's home
+WORKDIR /home/ubuntu
 
 # Keep container running
 CMD ["tail", "-f", "/dev/null"]

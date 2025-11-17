@@ -1,6 +1,6 @@
 # APL Development Container
 
-This Docker setup creates a persistent development environment for Affinity Plugin Loader with Wine and build tools pre-configured.
+This Docker setup creates a persistent development environment for Affinity Plugin Loader with MinGW, .NET SDK and necessary Windows SDK components (from Wine) pre-configured.
 
 ## Quick Start
 
@@ -46,9 +46,9 @@ docker exec -it apl-dev-environment bash
 ./exec.sh ./AffinityPluginLoader/build.sh
 
 # The script automatically maps your current working directory to the container
-# So if you're in ~/repos/my-project, commands run in /home/host/repos/my-project
-cd ~/repos/some-project
-./exec.sh dotnet build  # Runs in the mapped directory inside container
+# So if you're in ~/repos/AffinityPluginLoader, commands run in /home/host/repos/AffinityPluginLoader
+cd ~/repos/AffinityPluginLoader
+~/path/to/exec.sh dotnet build  # Runs in the mapped directory inside container
 ```
 
 ### Creating Wrapper Scripts
@@ -62,12 +62,12 @@ echo '#!/usr/bin/env bash
 chmod +x ~/bin/dotnet-wine
 
 # Now you can use it from anywhere:
-cd ~/repos/my-csharp-project
+cd ~/repos/AffinityPluginLoader
 dotnet-wine build
 dotnet-wine run
 ```
 
-This approach lets you seamlessly use the containerized build tools on any repository in your home directory.
+This approach lets you seamlessly use the containerized build tools on AffinityPluginLoader or any other repository in your home directory.
 
 ### Stop the Container
 
@@ -81,7 +81,7 @@ docker-compose down -v
 
 ## What's Included
 
-The container includes:
+The container includes everything needed to build Affinity Plugin Loader:
 - Ubuntu 24.04 base
 - Build tools (gcc, g++, make, etc.)
 - MinGW-w64 cross-compiler
@@ -92,7 +92,7 @@ The container includes:
 
 ## Directory Structure
 
-- `/workspace` - Main working directory
+- `/home/ubuntu` - Container user's home directory (default working directory)
 - `/gin` - Wine runner and prefix manager
 - `/home/host` - Mount point for your entire home directory
 - `/host` - Mount point for the apl-dev-container directory
@@ -101,13 +101,12 @@ The container includes:
 
 The setup uses Docker volumes to persist data:
 - `gin-data` - Persists Wine runners and prefixes
-- `workspace-data` - Persists workspace files
 
 Host filesystem mounts:
 - Your entire home directory is mounted at `/home/host` for accessing all repositories
 - The apl-dev-container directory is mounted at `/host` for easy access
 
-This means you can work on any repository in your home directory directly from the container!
+Clone AffinityPluginLoader (or any other project) in your home directory on the host, and you can build it directly using the containerized tools!
 
 ## Terminal Features
 
