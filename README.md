@@ -2,7 +2,7 @@
 
 This Docker setup creates a persistent development environment for Affinity Plugin Loader with MinGW, .NET SDK and necessary Windows SDK components (from Wine) pre-configured.
 
->[!WARN]
+>[!WARNING]
 > Once built, the image contains copyrighted files and should only be used locally. Do not distribute the built container image, only distribute the source Dockerfile.
 
 ## Quick Start
