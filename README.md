@@ -67,7 +67,7 @@ dotnet-wine build
 dotnet-wine run
 ```
 
-This approach lets you seamlessly use the containerized build tools on AffinityPluginLoader or any other repository in your home directory.
+This approach lets you seamlessly use the containerized build tools on Affinity Plugin Loader or any other repository in your home directory.
 
 ### Stop the Container
 
@@ -106,7 +106,7 @@ Host filesystem mounts:
 - Your entire home directory is mounted at `/home/host` for accessing all repositories
 - The apl-dev-container directory is mounted at `/host` for easy access
 
-Clone AffinityPluginLoader (or any other project) in your home directory on the host, and you can build it directly using the containerized tools!
+Clone Affinity Plugin Loader (or any other project) in your home directory on the host, and you can build it directly using the containerized tools!
 
 ## Terminal Features
 
